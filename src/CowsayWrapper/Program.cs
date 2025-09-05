@@ -48,7 +48,11 @@ namespace CowsayWrapper
             Console.WriteLine("Goodbye!");
         }
 
-        // Executes cowsay using STDIN communication instead of command-line arguments.
+        /// <summary>
+        /// Executes cowsay using STDIN communication instead of command-line arguments.
+        /// </summary>
+        /// <param name="message"></param>
+        /// <returns></returns>
         private static async Task<ProcessResult> ExecuteCowsay(string message)
         {
             var processStartInfo = new ProcessStartInfo
@@ -89,7 +93,12 @@ namespace CowsayWrapper
             }
         }
 
-        // Handles STDIN writing and STDOUT/STDERR reading concurrently to avoid deadlocks.
+        /// <summary>
+        /// Handles STDIN writing and STDOUT/STDERR reading concurrently to avoid deadlocks.
+        /// </summary>
+        /// <param name="process"></param>
+        /// <param name="message"></param>
+        /// <returns></returns>
         private static async Task<ProcessResult> CommunicateWithProcess(Process process, string message)
         {
             // Start all I/O operations concurrently
@@ -122,7 +131,12 @@ namespace CowsayWrapper
             return ProcessResult.Success(stdout, exitCode);
         }
 
-        // Safely writes message to process STDIN and closes the stream.
+        /// <summary>
+        /// Safely writes message to process STDIN and closes the stream.
+        /// </summary>
+        /// <param name="process"></param>
+        /// <param name="message"></param>
+        /// <returns></returns>
         private static async Task WriteToStdin(Process process, string message)
         {
             try
@@ -177,7 +191,9 @@ namespace CowsayWrapper
         }
     }
 
-    // Represents the result of a process execution with proper success/failure     
+    /// <summary>
+    /// Represents the result of a process execution with proper success/failure     
+    /// </summary>
     public class ProcessResult
     {
         public bool IsSuccess { get; private set; }
